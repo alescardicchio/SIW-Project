@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Edit Project</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a th:href="@{|/projects/${projectToEditId}|}">Project</a></li>
+                <li role="presentation" class="active"><a th:href="@{/home}">Homepage</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">Taskmanager application</h3>
+    </div>
+
+    <div class="jumbotron">
+
+        <h2>Here you can edit your Project</h2>
+
+        <form th:action="@{|/projects/${projectToEditId}/edit|}"
+              th:object="${projectForm}"
+              method="post">
+
+            <div class="form-group">
+                <label for="nameProjectInput">New Name of Project</label></td>
+                <input class="form-control" id="nameProjectInput" type="text" placeholder="Enter new Name" required
+                           th:field="*{name}"></td>
+                <small th:if="${#fields.hasErrors('name')}" th:errors="${projectForm.name}" th:style="'color:red'"></small>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Apply changes</button>
+        </form>
+
+    </div>
+
+</div>
+</body>
+</html>

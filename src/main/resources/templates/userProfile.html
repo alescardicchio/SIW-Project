@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Profile</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a th:href="@{/home}">Homepage</a></li>
+            </ul>
+        </nav>
+        <h3>Taskmanager application</h3>
+    </div>
+
+    <div class="jumbotron">
+    <h2>Your account details..</h2>
+
+    <table class="table">
+        <tr><td>UserName:</td><td th:text="${credentials.userName}"></td></tr>
+        <tr><td>FirstName:</td><td th:text="${loggedUser.firstName}"></td></tr>
+        <tr><td>LastName:</td><td th:text="${loggedUser.lastName}"></td></tr>
+        <tr><td>Registered at:</td><td th:text="${loggedUser.creationTimeStamp}"></td></tr>
+        <tr><td>Role:</td><td th:text="${credentials.role}"></td></tr>
+    </table>
+
+    <form method="get" th:action="@{/users/me/edit}">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Edit Profile</button>
+    </form>
+    </div>
+
+</div>
+</body>
+</html>

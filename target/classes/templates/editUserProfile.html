@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Edit Profile</title>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="page-header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a th:href="@{/home}">Homepage</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">Taskmanager application</h3>
+    </div>
+
+    <div class="jumbotron">
+    <h2>Here you can edit your profile</h2>
+
+    <form method="post" th:action="@{/users/me/edit}" th:object="${userForm}">
+
+        <div class="form-group">
+            <label for="firstNameInput">New FirstName</label></td>
+            <input class="form-control" type="text" id="firstNameInput" placeholder="Enter your new FirstName" required
+                   th:field="*{firstName}"></td>
+            <small th:if="${#fields.hasErrors('firstName')}" th:errors="${userForm.firstName}" th:style="'color:red'"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="lastNameInput">New LastName</label></td>
+            <input class="form-control" type="text" id="lastNameInput" placeholder="Enter your new LastName" required
+                           th:field="*{lastName}"></td>
+            <small th:if="${#fields.hasErrors('lastName')}" th:errors="${userForm.lastName}" th:style="'color:red'"></small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Apply changes</button>
+    </form>
+    </div>
+
+</div>
+</body>
+</html>

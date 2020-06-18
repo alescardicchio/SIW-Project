@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Registration</title>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="page-header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a th:href="@{/}">Index page</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">Taskmanager application</h3>
+    </div>
+
+    <div class="jumbotron">
+
+        <h1>Registration page</h1>
+
+        <br>
+        <br>
+
+        <form id="registerUserForm"
+              th:action="@{/users/register}"
+              method="post">
+
+            <div class="form-group">
+                <label for="userNameInput">UserName</label></td>
+                <input class="form-control" type="text" id="userNameInput" placeholder="Enter your UserName" required
+                       th:field="${credentialsForm.userName}" />
+                <small th:if="${#fields.hasErrors('credentialsForm.userName')}"
+                    th:errors="${credentialsForm.userName}" th:style="'color:red'"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="firstNameInput">FirstName</label>
+                <input class="form-control" type="text" id="firstNameInput" placeholder="Enter your FirstName" required
+                       th:field="${userForm.firstName}" />
+                <small th:if="${#fields.hasErrors('userForm.firstName')}"
+                    th:errors="${userForm.firstName}" th:style="'color:red'"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="lastNameInput">LastName</label>
+                <input class="form-control" type="text" id="lastNameInput" placeholder="Enter your LastName" required
+                       th:field="${userForm.lastName}" />
+                <small th:if="${#fields.hasErrors('userForm.lastName')}"
+                    th:errors="${userForm.lastName}" th:style="'color:red'"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="passwordInput">Password</label>
+                <input class="form-control" type="password" id="passwordInput" placeholder="Enter your Password" required
+                       th:field="${credentialsForm.password}" />
+                <small th:if="${#fields.hasErrors('credentialsForm.password')}"
+                    th:errors="${credentialsForm.password}" th:style="'color:red'"></small>
+            </div>
+
+            <br>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

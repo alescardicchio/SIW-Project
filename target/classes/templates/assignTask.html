@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Assigning Task</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a th:href="@{|/projects/${projectId}|}">Project</a></li>
+                <li role="presentation" class="active"><a th:href="@{/home}">Homepage</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">Taskmanager application</h3>
+    </div>
+
+    <div class="jumbotron">
+
+        <h2>From here you can assign a Task to another User</h2>
+
+        <form th:action="@{|/projects/${projectId}/tasks/${taskToAssignId}/assign|}"
+              th:object="${credentialsForm}"
+              method="post">
+
+            <div class="form-group">
+                <label for="userNameInput">UserName of the User you wish to assign the Task to</label></td>
+                <input class="form-control" id="userNameInput" type="text" placeholder="Enter the UserName" required
+                               th:field="*{userName}">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Assign this Task</button>
+        </form>
+
+    </div>
+
+</div>
+</body>
+</html>

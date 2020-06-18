@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+</head>
+<body>
+    <h1 th:text="|Here is your personal page, dear Admin ${loggedUser.firstName}.|"></h1>
+
+    <h4><a href="/admin/users">All Users List</a></h4>
+</body>
+</html>

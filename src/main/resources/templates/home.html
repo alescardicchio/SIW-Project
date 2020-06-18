@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Homepage</title>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="page-header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </nav>
+        <h3>Taskmanager application</h3>
+    </div>
+
+    <div class="jumbotron">
+    <h2 th:text="|Here is your personal page, ${loggedUser.firstName}.|"></h2>
+
+        <br>
+        <br>
+
+        <h4><a href="/projects">• My projects</a></h4>
+        <br>
+        <h4><a href="/projects/visible">• Projects shared with me</a></h4>
+        <br>
+        <h4><a href="/projects/add">• Create new project</a></h4>
+        <br>
+        <h4><a href="/users/me">• Profile</a></h4>
+    </div>
+</div>
+</body>
+</html>

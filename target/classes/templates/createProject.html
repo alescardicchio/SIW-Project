@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>New Project</title>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="page-header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a th:href="@{/home}">Homepage</a></li>
+            </ul>
+        </nav>
+        <h3>Taskmanager application</h3>
+    </div>
+
+    <div class="jumbotron">
+    <h2>Create your new project from here</h2>
+
+        <br>
+
+        <form id="createProjectForm"
+          th:action="@{/projects/add}"
+          th:object="${projectForm}"
+          method="post">
+
+            <div class="form-group">
+                <label for="projectNameInput">Project Name</label></td>
+                <input class="form-control" type="text" id="projectNameInput" placeholder="Enter Project's Name" required
+                    th:field="*{name}"></td>
+                <small th:if="${#fields.hasErrors('name')}"
+                    th:errors="*{name}" th:style="'color:red'"></small>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Create</button>
+        </form>
+    </div>
+
+
+</div>
+</body>
+</html>

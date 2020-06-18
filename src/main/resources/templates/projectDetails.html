@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Project Info</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a th:href="@{/home}">Homepage</a></li>
+            </ul>
+        </nav>
+        <h3>Taskmanager application</h3>
+    </div>
+
+    <div class="jumbotron">
+
+    <h1 th:text="${project.name}"></h1>
+
+    <br>
+
+    <div th:if="${members.size() > 0}">
+        <h3 style="color:DodgerBlue">Shared with:</h3>
+        <ul>
+            <li th:each="member : ${members}">
+                <div th:text="|${member.firstName} ${member.lastName}|"></div>
+            </li>
+        </ul>
+    </div>
+
+    <div th:if="${project.tags.size() > 0}">
+        <h3 style="color:SlateBlue">TAGS:</h3>
+            <div>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Color</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="tag : ${project.tags}">
+                        <td th:text="${tag.name}">Tag Name</td>
+                        <td th:text="${tag.color}">Tag Color</td>
+                        <td th:text="${tag.description}">Tag Description</td>
+                        <td th:if="${project.owner == loggedUserCredentials.user}">
+                            <form method="post" th:action="@{|/projects/${project.id}/tags/${tag.id}/delete|}">
+                                <button type="submit" class="btn btn-secondary btn-sm">Remove Tag</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+
+    <div th:if="${project.tasks.size() > 0}">
+        <h3 style="color:SlateBlue">TASKS:</h3>
+        <ul>
+            <li th:each="task : ${project.tasks}">
+                <div><a th:href="|${project.id}/tasks/${task.id}|" th:text="${task.name}"></a></div>
+            </li>
+        </ul>
+    </div>
+
+        <br>
+        <br>
+
+    <div>
+    <div th:if="${project.owner == loggedUserCredentials.user}">
+        <form method="get" th:action="@{|/projects/${project.id}/edit|}">
+            <button type="submit" class="btn btn-warning">Edit Project</button>
+        </form>
+    </div>
+        <p></p>
+    <div th:if="${project.owner == loggedUserCredentials.user}">
+        <form method="post" th:action="@{|/projects/${project.id}/delete|}">
+            <button type="submit" class="btn btn-danger">Delete Project</button>
+        </form>
+    </div>
+        <p></p>
+    <div th:if="${project.owner == loggedUserCredentials.user}">
+        <form method="get" th:action="@{|/projects/${project.id}/share|}">
+            <button type="submit" class="btn btn-info">Share Project</button>
+        </form>
+    </div>
+        <p></p>
+    <div th:if="${project.owner == loggedUserCredentials.user}">
+        <form method="get" th:action="@{|/projects/${project.id}/tags/add|}">
+            <button type="submit" class="btn btn-primary">Add Tag to the Project</button>
+        </form>
+    </div>
+        <p></p>
+    <div th:if="${project.owner == loggedUserCredentials.user}">
+        <form method="get" th:action="@{|/projects/${project.id}/tasks/add|}">
+            <button type="submit" class="btn btn-primary">Add Task to the Project</button>
+        </form>
+    </div>
+
+    </div>
+    </div>
+
+</div>
+</body>
+</html>

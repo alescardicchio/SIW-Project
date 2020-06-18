@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Sharing Project</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a th:href="@{|/projects/${projectToShareId}|}">Project</a></li>
+                <li role="presentation" class="active"><a th:href="@{/home}">Homepage</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">Taskmanager application</h3>
+    </div>
+
+    <div class="jumbotron">
+
+        <h2>From here you can share your Project with other users</h2>
+
+        <form th:action="@{|/projects/${projectToShareId}/share|}"
+              th:object="${credentialsForm}"
+              method="post">
+
+            <div class="form-group">
+                <label for="userNameInput">UserName of the User with whom you want to share the Project</label></td>
+                <td><input class="form-control" id="userNameInput" type="text" placeholder="Enter the UserName" required
+                           th:field="*{userName}">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Share your Project</button>
+        </form>
+
+    </div>
+
+</div>
+</body>
+</html>

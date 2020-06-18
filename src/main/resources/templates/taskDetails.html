@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Task Info</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a th:href="@{|/projects/${projectId}|}">Project</a></li>
+                <li role="presentation" class="active"><a th:href="@{/home}">Homepage</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">Taskmanager application</h3>
+    </div>
+
+    <div class="jumbotron">
+
+        <h1 th:text="${task.name}"></h1>
+        <h3 th:text="${task.description}" th:style="'font-style:italic'"></h3>
+
+        <br>
+
+        <div th:if="${task.assignedUser != null}">
+            <h3 style="color:DodgerBlue">Assigned to:</h3>
+                <div th:text="|${task.assignedUser.firstName} ${task.assignedUser.lastName}|"></div>
+        </div>
+
+        <br>
+
+        <div th:if="${tagList.size() > 0}">
+            <br>
+            <h3 style="color:SlateBlue">TAGS:</h3>
+            <div>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Color</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="tag : ${tagList}">
+                        <td th:text="${tag.name}"></td>
+                        <td th:text="${tag.color}"></td>
+                        <td th:text="${tag.description}"></td>
+                        <td th:if="${project.owner == loggedUserCredentials.user}">
+                            <form method="post" th:action="@{|/projects/${project.id}/tasks/${task.id}/tags/${tag.id}/delete|}">
+                                <button type="submit" class="btn btn-secondary btn-sm">Remove Tag</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div th:if="${task.comments.size() > 0}">
+            <br>
+            <h3 style="color:SlateBlue">COMMENTS:</h3>
+            <ul>
+                <li th:each="comment : ${task.comments}">
+                    <div th:text="|${comment.creator.firstName} ${comment.creator.lastName} wrote:|"></div>
+                    <div th:text="${comment.content}" th:style="'font-style:italic'"></div>
+                </li>
+            </ul>
+        </div>
+
+        <br>
+        <br>
+
+        <div>
+            <div th:if="${project.owner == loggedUserCredentials.user}">
+                <form method="get" th:action="@{|/projects/${projectId}/tasks/${task.id}/edit|}">
+                    <button type="submit" class="btn btn-warning">Edit Task</button>
+                </form>
+            </div>
+
+            <p></p>
+
+            <div th:if="${project.owner == loggedUserCredentials.user}">
+                <form method="post" th:action="@{|/projects/${projectId}/tasks/${task.id}/delete|}">
+                    <button type="submit" class="btn btn-danger">Delete Task</button>
+                </form>
+            </div>
+
+            <p></p>
+
+            <div th:if="${project.owner == loggedUserCredentials.user && task.assignedUser == null}">
+                <form method="get" th:action="@{|/projects/${projectId}/tasks/${task.id}/assign|}">
+                    <button type="submit" class="btn btn-info">Assign Task to User</button>
+                </form>
+            </div>
+
+            <p></p>
+
+            <div th:if="${project.owner == loggedUserCredentials.user}">
+                <form method="get" th:action="@{|/projects/${projectId}/tasks/${task.id}/tags/add|}">
+                    <button type="submit" class="btn btn-primary">Add Tag to the Task</button>
+                </form>
+            </div>
+
+            <p></p>
+
+            <div th:if="${project.owner != loggedUserCredentials.user}">
+                <form method="get" th:action="@{|/projects/${projectId}/tasks/${taskId}/comments/add|}">
+                    <button type="submit" class="btn btn-primary">Add a Comment under this Task</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
