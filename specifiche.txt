@@ -1,4 +1,6 @@
-Casi d'uso: USER
+---------
+
+        Casi d'uso: USER
 
  • Signup :
  1. L'utente decide di registrarsi, scegliendo l'opzione Sign-Up.
@@ -25,7 +27,7 @@ Casi d'uso: USER
 
 ---------
 
-Casi d'uso: PROJECT
+        Casi d'uso: PROJECT
 
 • Creare un nuovo progetto :
 1. L'utente crea un nuovo progetto selezionando l'opzione 'Create new Project'
@@ -55,9 +57,14 @@ Casi d'uso: PROJECT
 1. L'utente aggiunge un tag ad un proprio progetto selezionando l'opzione 'Add Tag' nella pagina del progetto interessato.
 2. Il Sistema mostra una form che l'utente riempierà con i dati del tag che intende aggiungere, successivamente il Sistema aggiunge il tag al progetto.
 
+• Cancellare un Tag da un mio progetto :
+1. L'utente rimuove un tag di un proprio progetto selezionando l'opzione 'Delete Tag' nella pagina del progetto interessato.
+2. Il Sistema rimuove il task del progetto.
+
+
 ---------
 
-Casi d'uso: TASK
+        Casi d'uso: TASK
 
 • Aggiungere un nuovo Task a un mio progetto :
 1. L'utente aggiunge un task ad un proprio progetto selezionando l'opzione 'Add Task' nella pagina del progetto interessato.
@@ -82,3 +89,9 @@ Casi d'uso: TASK
 • Aggiungere un Commento ad un Task di un progetto su cui ho visibilità :
 1. L'utente aggiunge un commento sotto un task di progetto di cui è membro, selezionando l'opzione 'Add Comment' nella pagina del task interessato.
 2. Il Sistema registra il commento dell'utente nella pagina del task, d'ora in poi il commento ed il relativo creato saranno visibili nella pagina del task.
+
+• Cancellare un Tag da un Task di un mio progetto :
+1. L'utente rimuove un tag dal task di un proprio progetto selezionando l'opzione 'Delete Tag' nella pagina del task interessato.
+2. Il Sistema rimuove il tag dal task del progetto.
+
+---------
